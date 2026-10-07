@@ -1,16 +1,27 @@
 from typing import Optional
-
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
 
 
 @app.get("/")
 async def root():
-    return {"message": {
+    return {"endpoints": {
         "/user": "CRUD user"
     }}
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
-    return {"item_id": item_id, "q": q}
+class User(BaseModel):
+    name: str
+    email: str
+    password: str
+
+@app.post("/user")
+def create_user(user: User):
+    # TO DO: Real persistence
+    return user
+
+@app.get("/user/{user_email}")
+def read_item(user_email: str, q: Optional[str] = None):
+    # TO DO: Real search
+    return {"user_email": user_email, "q": q}
