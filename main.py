@@ -3,9 +3,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from pymongo import MongoClient
 from dotenv import load_dotenv
+import os
 
 # SETTINGS
 
+load_dotenv()
 app = FastAPI()
 
 origins = [
@@ -15,7 +17,7 @@ origins = [
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
-    allow_crede ntials=True,
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
