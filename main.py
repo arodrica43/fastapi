@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from pymongo import MongoClient
+from dotenv import load_dotenv
 
 # SETTINGS
 
@@ -14,12 +15,14 @@ origins = [
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
-    allow_credentials=True,
+    allow_crede ntials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-MONGODB_URI = "mongodb+srv://lexws33_db_user:<z>@cluster0.vnl39cy.mongodb.net/?appName=Cluster0"
+
+MONGODB_SECRET = os.getenv('MONGODB_SECRET')
+MONGODB_URI = f"mongodb+srv://lexws33_db_user:{MONGODB_SECRET}@cluster0.vnl39cy.mongodb.net/?appName=Cluster0"
 mongodb_client = MongoClient(MONGODB_URI)
 db = mongodb_client["Exercises"]
 user_collection = db["User"]
