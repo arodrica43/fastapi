@@ -19,7 +19,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-MONGODB_URI = "mongodb+srv://lexws33_db_user:aJ5GxjUnDtDigpdW@cluster0.vnl39cy.mongodb.net/?appName=Cluster0"
+MONGODB_URI = "mongodb+srv://lexws33_db_user:<z>@cluster0.vnl39cy.mongodb.net/?appName=Cluster0"
 mongodb_client = MongoClient(MONGODB_URI)
 db = mongodb_client["Exercises"]
 user_collection = db["User"]
